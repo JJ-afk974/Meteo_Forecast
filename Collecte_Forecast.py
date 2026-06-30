@@ -20,9 +20,21 @@ def fetch_lfpb():
         return None
     return r.json()
 
-data = fetch_lfpb()
-if data:
+event = fetch_lfpb()
+
+rows = []
+
+for days in event["calendarDays"]:
+    j0 = event["days"]
+    
+    rows.append({
+        "time": j0["validTimeLocal"],
+        "temperature": j0["temperature"],
+    })
+
+data = pd.DataFrame(rows)
+
+if not data.empty:
     data["_collecte_le"] = datetime.now().isoformat()
-    df = pd.DataFrame([data])
-    df.to_csv(FICHIER, mode="a", header=not os.path.exists(FICHIER), index=False)
+    data.to_csv(FICHIER, mode="a", header=not os.path.exists(FICHIER), index=False)
     print("Donnée enregistrée")
