@@ -24,7 +24,7 @@ event = fetch_lfpb()
 
 rows = []
 
-for days in event["calendarDays"]:
+for days in event["dayOfWeek"]:
     j0 = event["days"]
     
     rows.append({
