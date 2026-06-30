@@ -2,8 +2,7 @@ import requests
 import pandas as pd
 import os
 from datetime import datetime
-
-URL = "https://api.weather.com/v3/wx/forecast/daily/3day"
+URL = "https://api.weather.com/v3/wx/forecast/hourly/3day"
 PARAMS_BASE = {
     "apiKey": os.environ["WEATHER_API_KEY"],  # on ne mettra plus la clé en dur dans le code
     "language": "en-US",
