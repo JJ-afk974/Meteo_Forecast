@@ -25,7 +25,7 @@ event = fetch_lfpb()
 rows = []
 
 for days in event["dayOfWeek"]:
-    j0 = event["days"]
+    j0 = event[days]
     
     rows.append({
         "time": j0["validTimeLocal"],
