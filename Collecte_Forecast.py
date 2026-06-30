@@ -24,13 +24,17 @@ event = fetch_lfpb()
 
 rows = []
 
-for days in event["dayOfWeek"]:
-    j0 = event[days]
-    
-    rows.append({
-        "time": j0["validTimeLocal"],
-        "temperature": j0["temperature"],
-    })
+if event:
+    # on parcourt les listes en parallèle, par index
+    for i in range(len(event["validTimeLocal"])):
+        rows.append({
+            "time": event["validTimeLocal"][i],
+            "dayOfWeek": event["dayOfWeek"][i],
+            "temperature": event["temperature"][i],
+            "windSpeed": event["windSpeed"][i],
+            "wxPhraseShort": event["wxPhraseShort"][i],
+            "relativeHumidity": event["relativeHumidity"][i],
+        })
 
 data = pd.DataFrame(rows)
 
